@@ -4,7 +4,5 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  ROLE_ADMIN    = 1
-  ROLE_GARDENER = 2
-  ROLE_CYCLIST  = 3
+  enum role: {admin: 0, donor: 1, cyclist: 2}
 end
