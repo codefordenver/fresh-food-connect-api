@@ -32,3 +32,24 @@ User.create!(
   role: :cyclist, 
   phone: "555.555.5555"
 )
+
+Location.create!(
+  address: "1062 Delaware St",
+  city: "Denver", 
+  state: "CO",
+  zipcode: "80204",
+  comments: "It's a commerical building",
+  extra: "There is a receptionist",
+  route_id: 1,
+  pickup_date: "2015-09-15"
+)
+
+Location.create!(
+  address: "1510 Blake St",
+  city: "Denver", 
+  state: "CO",
+  zipcode: "80202",
+  comments: "School is in the basement",
+  route_id: 4,
+  pickup_date: "2015-10-15"
+)
