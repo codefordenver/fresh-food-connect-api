@@ -11,10 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150828174332) do
+ActiveRecord::Schema.define(version: 20150830160905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "donation_preferences", force: :cascade do |t|
+    t.integer  "size"
+    t.text     "comments"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "donations", force: :cascade do |t|
+    t.float    "weight"
+    t.date     "pickedUpAt"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "locations", force: :cascade do |t|
     t.string   "address",     default: "", null: false
