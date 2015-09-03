@@ -9,7 +9,9 @@ gem 'spring', :group => :development
 
 gem 'pg'
 
-gem 'devise'
+# authentication
+gem 'devise_token_auth'
+gem 'omniauth'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'

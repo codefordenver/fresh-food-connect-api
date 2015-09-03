@@ -10,7 +10,7 @@ User.create!(
   first: "Code", 
   last: "for Denver", 
   email: "codefordenver@gmail.com", 
-  password: "CFCFFC2015", 
+  password: "CFDFFC2015", 
   role: :admin, 
   phone: "555.555.5555"
 )
@@ -19,7 +19,7 @@ User.create!(
   first: "Donor", 
   last: "1", 
   email: "donor1@nowhere.org", 
-  password: "CFCFFC2015", 
+  password: "CFDFFC2015", 
   role: :donor, 
   phone: "555.555.5555"
 )
@@ -28,7 +28,7 @@ User.create!(
   first: "Cyclist", 
   last: "1", 
   email: "cyclist1@nowhere.org", 
-  password: "CFCFFC2015", 
+  password: "CFDFFC2015", 
   role: :cyclist, 
   phone: "555.555.5555"
 )
