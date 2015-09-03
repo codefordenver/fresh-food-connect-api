@@ -27,11 +27,13 @@ require 'devise'
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+  config.include Rails.application.routes.url_helpers
+  
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   # Devise config
-  # config.include Devise::TestHelpers, :type => :controller
+  config.include Devise::TestHelpers, :type => :controller
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
