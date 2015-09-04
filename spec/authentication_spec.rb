@@ -1,22 +1,23 @@
 require 'rails_helper'
 
-RSpec.describe "authentication", type: :request do
-  before :all do
-    @user = User.create(
+RSpec.describe "Authentication", type: :request do
+
+  it "user logs in and receives a token" do
+    @user = User.create!(
       first: "Code", 
       last: "for Denver", 
-      email: "codefordenver@gmail.com", 
+      email: "codefordenver@gmail.com",
       password: "CFDFFC2015", 
       role: :admin, 
-      phone: "555.555.5555"
+      phone: "555.555.5555",
+      confirmed_at: Date.today
     )
-  end
-
-  it "authenticates" do
-    post user_session_path, {email: @user.email, password: @user.password}
     
+    post user_session_path, {email: @user.email, password: @user.password}
     response_body = JSON.load(response.body)
     expect(response_body["errors"]).to be_blank
+    expect(response.header["access-token"]).not_to be_blank
     expect(response.status).to eq 200
   end
+
 end
