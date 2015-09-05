@@ -1,6 +1,13 @@
 class DeviseTokenAuthCreateUsers < ActiveRecord::Migration
   def change
     create_table(:users) do |t|
+      ## Basic user Info
+      t.string  :first, default: "" #, null: false 
+      t.string  :last,  default: "" #, null: false 
+      t.string  :email, default: "" #, null: false 
+      t.integer :role,  default: nil#, null: false 
+      t.string  :phone, default: "" #, null: false 
+
       ## Required
       t.string :provider, :null => false, :default => "email"
       t.string :uid, :null => false, :default => ""
@@ -32,13 +39,6 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration
       # t.integer  :failed_attempts, :default => 0, :null => false # Only if lock strategy is :failed_attempts
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
-
-      ## User Info
-      t.string  :first,              null: false, default: ""
-      t.string  :last,               null: false, default: ""
-      t.string  :email,              null: false, default: ""
-      t.integer :role,               null: false, default: nil
-      t.string  :phone,              null: false, default: ""
 
       ## Tokens
       t.json :tokens

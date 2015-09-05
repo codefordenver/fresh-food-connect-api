@@ -12,7 +12,8 @@ User.create!(
   email: "codefordenver@gmail.com", 
   password: "CFDFFC2015", 
   role: :admin, 
-  phone: "555.555.5555"
+  phone: "555.555.5555",
+  confirmed_at: Date.today
 )
 
 User.create!(
@@ -21,7 +22,8 @@ User.create!(
   email: "donor1@nowhere.org", 
   password: "CFDFFC2015", 
   role: :donor, 
-  phone: "555.555.5555"
+  phone: "555.555.5555",
+  confirmed_at: Date.today
 )
 
 User.create!(
@@ -30,7 +32,8 @@ User.create!(
   email: "cyclist1@nowhere.org", 
   password: "CFDFFC2015", 
   role: :cyclist, 
-  phone: "555.555.5555"
+  phone: "555.555.5555",
+  confirmed_at: Date.today
 )
 
 Location.create!(

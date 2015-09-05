@@ -46,6 +46,11 @@ ActiveRecord::Schema.define(version: 20150903031718) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string   "first",                  default: ""
+    t.string   "last",                   default: ""
+    t.string   "email",                  default: ""
+    t.integer  "role"
+    t.string   "phone",                  default: ""
     t.string   "provider",               default: "email", null: false
     t.string   "uid",                    default: "",      null: false
     t.string   "encrypted_password",     default: "",      null: false
@@ -61,11 +66,6 @@ ActiveRecord::Schema.define(version: 20150903031718) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.string   "first",                  default: "",      null: false
-    t.string   "last",                   default: "",      null: false
-    t.string   "email",                  default: "",      null: false
-    t.integer  "role",                                     null: false
-    t.string   "phone",                  default: "",      null: false
     t.json     "tokens"
     t.datetime "created_at"
     t.datetime "updated_at"
