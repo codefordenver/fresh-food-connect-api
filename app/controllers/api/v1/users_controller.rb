@@ -1,6 +1,4 @@
-class Api::V1::UsersController < ApplicationController
-  before_filter :authenticate_user!
-
+class Api::V1::UsersController < Api::V1::BaseController
   def index
     @users = User.all
   end
