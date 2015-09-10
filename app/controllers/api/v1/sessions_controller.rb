@@ -1,9 +1,9 @@
 class Api::V1::SessionsController < Api::V1::BaseController
-  def index
-    
+  def create
+
   end
 
-  def show
-    
+  def destroy
+
   end
 end
