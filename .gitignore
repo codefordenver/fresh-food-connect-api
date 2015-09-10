@@ -26,6 +26,7 @@ db/backup*
 config/database.yaml
 config/database.yml
 config/database.yml.mine
+config/secrets.yml
 config/initializers/secret_token.rb
 log/*
 .idea
