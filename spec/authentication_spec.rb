@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Authentication", type: :request do
 
   it "user logs in and receives a token" do
-    @user = User.create!(
+    user = User.create!(
       first: "Code", 
       last: "for Denver", 
       email: "codefordenver@gmail.com",
@@ -14,8 +14,8 @@ RSpec.describe "Authentication", type: :request do
     )
     
     post api_v1_user_session_path, {
-      email: @user.email, 
-      password: @user.password
+      email: user.email, 
+      password: user.password
     }
     response_body = JSON.load(response.body)
     expect(response_body["errors"]).to be_blank
@@ -24,7 +24,7 @@ RSpec.describe "Authentication", type: :request do
   end
 
   it "user logs out" do
-    @user = User.create!(
+    user = User.create!(
       first: "Code", 
       last: "for Denver", 
       email: "codefordenver@gmail.com",
@@ -35,23 +35,23 @@ RSpec.describe "Authentication", type: :request do
     )
     
     post api_v1_user_session_path, {
-      email: @user.email, 
-      password: @user.password
+      email: user.email, 
+      password: user.password
     }
 
-    expect(@user.reload.tokens.count).to eq 1
+    expect(user.reload.tokens.count).to eq 1
 
     delete destroy_api_v1_user_session_path, {
       "access-token": response.header["access-token"], 
       client: response.header["client"], 
-      uid: @user.email
+      uid: response.header["uid"]
       # expiry: response.header["expiry"], 
       # "token-type": response.header["token-type"],
     }
     response_body = JSON.load(response.body)
     expect(response_body["errors"]).to be_blank
     expect(response.status).to eq 200
-    expect(@user.reload.tokens.count).to eq 0
+    expect(user.reload.tokens.count).to eq 0
   end
 
 end
