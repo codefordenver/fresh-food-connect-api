@@ -1,5 +1,5 @@
 class Api::V1::BaseController < ApplicationController
-  before_filter :authenticate_user!, except: :options
+  before_action :authenticate_api_v1_user!, except: :options
   before_action :cors_set_access_control_headers
 
   def options

@@ -5,9 +5,11 @@ class Api::V1::UsersController < Api::V1::BaseController
 
   def show
     @user = User.find(params[:id])
-    unless @user == current_user
+    unless @user == current_api_v1_user
       redirect_to :back, :alert => "Access denied."
     end
+
+    render json: {user: @user}
   end
 
   def create
