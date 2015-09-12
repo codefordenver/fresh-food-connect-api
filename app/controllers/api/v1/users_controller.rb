@@ -1,6 +1,4 @@
-class Api::V1::UsersController < ApplicationController
-  before_filter :authenticate_user!
-
+class Api::V1::UsersController < Api::V1::BaseController
   def index
     @users = User.all
   end
@@ -11,4 +9,29 @@ class Api::V1::UsersController < ApplicationController
       redirect_to :back, :alert => "Access denied."
     end
   end
+
+  def create
+    @user = User.new(params[:user])
+
+    respond_to do |format|
+      if @user.save
+        format.json { render :json => @user, :status => :created, :location => @user }
+      else
+        format.json { render :json => @user.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  def update
+    @user = User.find(params[:id])
+
+ 		respond_to do |format|
+      if @user.update_attributes(params[:user])
+        format.json { head :no_content }
+      else
+        format.json { render :json => @user.errors, :status => :unprocessable_entity }
+      end
+ 		end
+  end
+
 end
