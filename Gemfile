@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 gem 'rails', '4.2.4'
 
 gem 'rails-api'
@@ -8,12 +7,17 @@ gem 'rails-api'
 gem 'spring', :group => :development
 
 gem 'pg'
+gem 'rack-cors', :require => 'rack/cors'
 
-gem 'devise'
+# authentication
+gem 'devise_token_auth'
+gem 'omniauth'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem "awesome_print"
+  gem "pry"
+  gem "pry-nav"
 end
 
 # To use ActiveModel has_secure_password
