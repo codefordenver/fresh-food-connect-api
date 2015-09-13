@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       
       resources :sessions, only: :create
-      resources :users
+      resources :users, only: [:index, :show]
       resources :locations
       resources :donations
       resources :donation_preferences
