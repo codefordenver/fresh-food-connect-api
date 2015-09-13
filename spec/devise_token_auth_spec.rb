@@ -1,6 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe "Authentication (Devise Token Auth)", type: :request do
+RSpec.describe "Devise Token Auth (devise_token_auth)", type: :request do
+
+  # guidance: https://github.com/lynndylanhurley/devise_token_auth#usage-tldr
 
   it "user logs in and receives a token" do
     user = User.create!(
@@ -86,5 +88,14 @@ RSpec.describe "Authentication (Devise Token Auth)", type: :request do
   end
 
   it "does not allow access without a valid token"
+
+  it "allows a user to reset their password"
+
+  it "allows a user to request a password reset"
+
+  it "verifies user by password reset token"
+
+  it "allows a user to register"
+
 
 end
