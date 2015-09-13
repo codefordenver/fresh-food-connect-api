@@ -5,7 +5,7 @@ class Api::V1::UsersController < Api::V1::BaseController
     users = []
     User.all.order(:id).each{|u| users << sanitize_user_attributes(u)}
 
-    render json: users
+    render json: {users: users}
   end
 
   def show
@@ -68,7 +68,7 @@ class Api::V1::UsersController < Api::V1::BaseController
 
   def admin_access_required
     if current_user.admin? == false
-      render json: {error: "Access denied."}
+      render json: {errors: "access denied"}, status: 403
       return
     end
   end
