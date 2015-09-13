@@ -1,4 +1,5 @@
 class Api::V1::UsersController < Api::V1::BaseController
+  before_action :admin_access_required, only: [:index]
 
   def index
     users = []
@@ -64,6 +65,13 @@ class Api::V1::UsersController < Api::V1::BaseController
     user_attributes.delete("updated_at")
 
     user_attributes
+  end
+
+  def admin_access_required
+    if current_user.admin? == false
+      render json: {error: "Access denied."}
+      return
+    end
   end
 
 end
