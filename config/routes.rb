@@ -4,10 +4,13 @@ Rails.application.routes.draw do
     action: "options", 
     constraints: { method: "OPTIONS" }, 
     via: :options
-    
+  
+  # mounting this outside of the api/v1 namespace resolves an annoying bug
+  mount_devise_token_auth_for 'User', at: 'api/v1/auth'
+
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
-      mount_devise_token_auth_for 'User', at: 'auth'
+      
       resources :sessions, only: :create
       resources :users
       resources :locations
