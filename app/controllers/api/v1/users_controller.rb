@@ -9,12 +9,9 @@ class Api::V1::UsersController < Api::V1::BaseController
   end
 
   def show
-    user = User.find(params[:id])
-    unless user == current_api_v1_user
-      redirect_to :back, :alert => "Access denied."
-    end
+    user = User.where(id:params[:id]).first
 
-    render json: {user: user}
+    render json: {user: sanitize_user_attributes(user)}
   end
 
   def create
@@ -63,6 +60,8 @@ class Api::V1::UsersController < Api::V1::BaseController
     user_attributes.delete("tokens")
     user_attributes.delete("created_at")
     user_attributes.delete("updated_at")
+
+    user_attributes["role"] = u.role
 
     user_attributes
   end
