@@ -5,6 +5,36 @@ RSpec.describe Api::V1::UsersController, type: :request do
     User.destroy_all
   end
 
+  it "creates/registers a new user" do
+    create_user_params = {
+      first: "Code", 
+      last: "for Denver", 
+      email: "codefordenver@gmail.com",
+      password: "CFDFFC2015",
+      password_confirmation: "CFDFFC2015", 
+      role: :admin, 
+      phone: "555.555.5555",
+      confirm_success_url: "http://localhost:3000/"
+    }
+    post user_registration_path, create_user_params
+    response_body = JSON.load(response.body)
+    user = User.last
+
+    expect(user.first).to eq create_user_params[:first]
+    expect(user.last).to eq create_user_params[:last]
+    expect(user.email).to eq create_user_params[:email]
+    expect(BCrypt::Password.new(user.encrypted_password)).
+      to eq create_user_params[:password]
+    expect(user.role).to eq create_user_params[:role].to_s
+    expect(user.phone).to eq create_user_params[:phone]
+    expect(response_body["errors"]).to be_blank
+    expect(response.status).to eq 200
+  end
+
+  it "updates a user"
+
+  it "deletes a new user"
+
   it "retrieves data for a single user" do
     create_user_data
     
@@ -19,19 +49,6 @@ RSpec.describe Api::V1::UsersController, type: :request do
     expect(response_body["user"]["role"]).to eq @user_admin.role
     expect(response_body["user"]["phone"]).to eq @user_admin.phone
     expect(response_body["user"]["uid"]).to eq @user_admin.uid
-  end
-
-  it "allows an admin to retrieve data for a list of users" do
-    create_user_data
-
-    get api_v1_users_path, @user_admin_request_data
-    response_body = JSON.load(response.body)
-
-    expect(response_body["errors"]).to be_blank
-    expect(response.status).to eq 200
-    expect(response_body["users"].count).to eq User.count
-    expect(response_body["users"].first["id"]).to eq User.first.id
-    expect(response_body["users"].last["id"]).to eq User.last.id
   end
 
   it "allows an admin to request data for any user" do
@@ -72,6 +89,19 @@ RSpec.describe Api::V1::UsersController, type: :request do
     expect(response_body["errors"]).to be_blank
     expect(response.status).to eq 200
     expect(response_body["user"]).to_not be_blank
+  end
+
+  it "allows an admin to retrieve data for a list of users" do
+    create_user_data
+
+    get api_v1_users_path, @user_admin_request_data
+    response_body = JSON.load(response.body)
+
+    expect(response_body["errors"]).to be_blank
+    expect(response.status).to eq 200
+    expect(response_body["users"].count).to eq User.count
+    expect(response_body["users"].first["id"]).to eq User.first.id
+    expect(response_body["users"].last["id"]).to eq User.last.id
   end
 
   it "does not allow a non-admin to retrieve data for a list of users" do
