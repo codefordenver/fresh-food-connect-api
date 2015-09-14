@@ -15,7 +15,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   def show
     user = User.where(id:params[:id]).first
 
-    if current_user.admin? ||  user == current_user
+    if current_user.admin? || user == current_user
       render json: {user: sanitize_user_attributes(user)}
     else
       render json: {errors: "access denied"}, status: 403

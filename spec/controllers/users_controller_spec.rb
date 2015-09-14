@@ -34,6 +34,46 @@ RSpec.describe Api::V1::UsersController, type: :request do
     expect(response_body["users"].last["id"]).to eq User.last.id
   end
 
+  it "allows an admin to request data for any user" do
+    create_user_data
+
+    # admin requests non-admin
+    get api_v1_user_path(@user_cyclist.id), @user_admin_request_data
+    response_body = JSON.load(response.body)
+
+    expect(response_body["errors"]).to be_blank
+    expect(response.status).to eq 200
+    expect(response_body["user"]).to_not be_blank
+
+    # admin requests self
+    get api_v1_user_path(@user_admin.id), @user_admin_request_data
+    response_body = JSON.load(response.body)
+
+    expect(response_body["errors"]).to be_blank
+    expect(response.status).to eq 200
+    expect(response_body["user"]).to_not be_blank
+  end
+
+  it "does not allow a non-admin to retrieve data for a user other than self" do
+    create_user_data
+
+    # non-admin requests admin
+    get api_v1_user_path(@user_admin.id), @user_cyclist_request_data
+    response_body = JSON.load(response.body)
+
+    expect(response_body["errors"]).to eq "access denied"
+    expect(response.status).to eq 403
+    expect(response_body["user"]).to be_blank
+
+    # non-admin requests himself
+    get api_v1_user_path(@user_cyclist.id), @user_cyclist_request_data
+    response_body = JSON.load(response.body)
+
+    expect(response_body["errors"]).to be_blank
+    expect(response.status).to eq 200
+    expect(response_body["user"]).to_not be_blank
+  end
+
   it "does not allow a non-admin to retrieve data for a list of users" do
     create_user_data
 
