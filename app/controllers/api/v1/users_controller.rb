@@ -1,41 +1,33 @@
 class Api::V1::UsersController < Api::V1::BaseController
-  before_action :admin_access_required, only: [:index]
+  # before_action :admin_access_required, only: [:index]
 
   def index
-    users = []
-    User.all.order(:id).each{|u| users << sanitize_user_attributes(u)}
+    if current_user.admin?
+      users = []
+      User.all.order(:id).each{|u| users << sanitize_user_attributes(u)}
 
-    render json: {users: users}
+      render json: {users: users}
+    else
+      render json: {errors: "access denied"}, status: 403
+    end
   end
 
   def show
     user = User.where(id:params[:id]).first
 
-    render json: {user: sanitize_user_attributes(user)}
+    if current_user.admin? ||  user == current_user
+      render json: {user: sanitize_user_attributes(user)}
+    else
+      render json: {errors: "access denied"}, status: 403
+    end
   end
-
+  
   def create
-    # user = User.new(params[:user])
-
-    # respond_to do |format|
-    #   if user.save
-    #     format.json { render :json => user, :status => :created, :location => user }
-    #   else
-    #     format.json { render :json => user.errors, :status => :unprocessable_entity }
-    #   end
-    # end
+    # handled by Devise Token Auth
   end
 
   def update
-   #  user = User.find(params[:id])
-
- 		# respond_to do |format|
-   #    if user.update_attributes(params[:user])
-   #      format.json { head :no_content }
-   #    else
-   #      format.json { render :json => user.errors, :status => :unprocessable_entity }
-   #    end
- 		# end
+   # handled by Devise Token Auth
   end
 
 
@@ -64,13 +56,6 @@ class Api::V1::UsersController < Api::V1::BaseController
     user_attributes["role"] = u.role
 
     user_attributes
-  end
-
-  def admin_access_required
-    if current_user.admin? == false
-      render json: {errors: "access denied"}, status: 403
-      return
-    end
   end
 
 end
