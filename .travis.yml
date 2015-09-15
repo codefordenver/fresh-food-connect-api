@@ -1,0 +1,10 @@
+
+language: ruby
+ruby:
+  - "2.2.2"
+
+install:
+  - bundle install
+  
+script:
+  - echo "Hello, World!"
