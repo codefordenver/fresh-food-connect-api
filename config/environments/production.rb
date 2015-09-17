@@ -80,4 +80,17 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # mandrill config stuff, depends on config/initializers/constants.rb
+  config.action_mailer.smtp_settings = {
+      address: SMTP_ADDRESS,
+      authentication: :plain
+      domain: SMTP_DOMAIN,
+      enable_starttls_auto: true,
+      password: SMTP_PASSWORD,
+      port: "587",
+      user_name: SMTP_USERNAME
+  }
+  config.action_mailer.default_url_options = { host: SMTP_DOMAIN }
+
 end

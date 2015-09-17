@@ -33,3 +33,4 @@ log/*
 .idea
 .ruby-version
 .ruby-gemset
+config/initializers/constants.rb
