@@ -1,4 +1,8 @@
 Rails.application.configure do
+  PASSWORD_RESET_URL = "http://www.freshfoodconnect.org/reset"
+  
+  # config.action_mailer.default_url_options = { :host => 'localhost' }
+  
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
