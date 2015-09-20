@@ -33,7 +33,7 @@ Response:
     [
         {
             id: Int,
-            size: String (small | medium | large),
+            size: String (none | small | medium | large),
             location_id: Int,
             user_id: Int,
             created_at: DateTime,
@@ -51,7 +51,7 @@ Request:
     POST http://{host}:{port}/api/{version}/users/{user_id}/locations/{location_id}/donations
     
     {
-        size: INT (small = 1 | medium = 2 | large = 3),
+        size: INT (none = 0 | small = 1 | medium = 2 | large = 3),
         comments: String (max length 255 characters)
         
     }
@@ -62,7 +62,7 @@ Request:
     [
         {
             id: Int,
-            size: String (small | medium | large),
+            size: String (none | small | medium | large),
             location_id: Int,
             user_id: Int,
             created_at: DateTime,
@@ -82,7 +82,7 @@ Request:
     PUT http://{host}:{port}/api/{version}/users/{user_id}/locations/{location_id}/donations/{id}
     
     {
-        size: INT (small = 1 | medium = 2 | large = 3),
+        size: INT (none = 0 | small = 1 | medium = 2 | large = 3),
         comments: String (max length 255 characters)
         
     }
