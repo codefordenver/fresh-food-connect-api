@@ -3,15 +3,13 @@ language: ruby
 rvm:
   - 2.2.2
 
-sudo: true
-
 install:
   - bundle install
-  - sudo apt-get install golang
   - gem install dpl
 
 script:
   - echo "Hello, World!"
+  - gimme list
 
 deploy:
   provider: atlas
