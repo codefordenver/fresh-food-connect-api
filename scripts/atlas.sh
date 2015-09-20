@@ -12,4 +12,4 @@ make
 cd ../fresh-food-connect-api
 
 # Upload Rails Application to Atlas
-../atlas-upload-cli/bin/atlas-upload codefordenver/fresh-food-connect .
+../atlas-upload-cli/bin/atlas-upload -vcs -debug codefordenver/fresh-food-connect .
