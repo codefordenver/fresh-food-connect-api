@@ -1,8 +1,8 @@
 #! /usr/bin/env sh
 
 # Update Packages and Install Go
-sudo apt-get update
-sudo apt-get install golang
+apt-get update
+apt-get install golang
 
 # Get Atlas Upload CLI
 cd ..
