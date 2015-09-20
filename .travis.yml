@@ -5,15 +5,12 @@ rvm:
 
 install:
   - bundle install
-  - gem install dpl
 
 script:
   - echo "Hello, World!"
-  - gimme list
 
 deploy:
   provider: atlas
-  token: $ATLAS_TOKEN
   app: codefordenver/freshfoodconnect
   debug: true
   vcs: true
