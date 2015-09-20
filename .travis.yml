@@ -3,13 +3,11 @@ language: ruby
 rvm:
   - 2.2.2
 
-addons:
-  apt:
-    packages:
-    - golang
+sudo: true
 
 install:
   - bundle install
+  - sudo apt-get install golang
   - gem install dpl
 
 script:
