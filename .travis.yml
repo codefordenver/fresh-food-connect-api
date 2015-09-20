@@ -17,3 +17,6 @@ deploy:
   debug: true
   vcs: true
   version: true
+  on:
+  	repo: codefordenver/fresh-food-connect-api
+  	branch: master
