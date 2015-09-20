@@ -21,7 +21,7 @@ class Api::V1::UsersController < Api::V1::BaseController
       render json: {errors: "access denied"}, status: 403
     end
   end
-  
+
   def create
     # handled by Devise Token Auth
   end

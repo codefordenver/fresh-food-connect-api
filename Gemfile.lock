@@ -55,6 +55,7 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     eventmachine (1.0.8)
+    excon (0.45.4)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     hashie (3.4.2)
@@ -160,6 +161,7 @@ PLATFORMS
 DEPENDENCIES
   awesome_print
   devise_token_auth
+  excon
   mandrill-api
   omniauth
   pg
@@ -170,10 +172,7 @@ DEPENDENCIES
   rails-api
   rspec-rails (~> 3.0)
   spring
-<<<<<<< HEAD
   thin
-=======
->>>>>>> adds mandril gem
 
 BUNDLED WITH
    1.10.6

@@ -22,6 +22,7 @@ group :development, :test do
 end
 
 gem 'mandrill-api'
+gem 'excon'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

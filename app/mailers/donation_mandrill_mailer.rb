@@ -1,6 +1,8 @@
 class UserMailer < BaseMandrillMailer
   def welcome(user_id)
-    user = User.find(user_id)
+    puts 'Usermailer#welcome'
+    # user = User.find(user_id)
+    user = user_id
     subject = "Welcome to our awesome app!"
     merge_vars = {
       "FIRST_NAME" => user.first_name,

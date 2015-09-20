@@ -23,6 +23,8 @@ Rails.application.routes.draw do
 
       resources :locations
 
+      post '/emails' => 'emails#send_welcome'
+
     end
   end
 end
