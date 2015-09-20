@@ -11,23 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150903031718) do
+ActiveRecord::Schema.define(version: 20150920170040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "donation_preferences", force: :cascade do |t|
-    t.integer  "size"
-    t.text     "comments"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "donations", force: :cascade do |t|
-    t.float    "weight"
-    t.date     "pickedUpAt"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "size",        null: false
+    t.text     "comments"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "location_id", null: false
+    t.integer  "user_id",     null: false
   end
 
   create_table "locations", force: :cascade do |t|
@@ -75,4 +70,6 @@ ActiveRecord::Schema.define(version: 20150903031718) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
 
+  add_foreign_key "donations", "locations"
+  add_foreign_key "donations", "users"
 end
