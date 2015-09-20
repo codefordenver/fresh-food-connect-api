@@ -5,6 +5,9 @@ rvm:
 
 install:
   - bundle install
-  
+
 script:
   - echo "Hello, World!"
+
+after_success:
+  - ./scripts/atlas.sh
