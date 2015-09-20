@@ -19,5 +19,4 @@ deploy:
   version: true
   on:
     repo: codefordenver/fresh-food-connect-api
-    branch: master
-    
+    branch: be-deployment
