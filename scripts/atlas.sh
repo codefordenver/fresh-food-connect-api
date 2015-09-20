@@ -4,6 +4,9 @@
 # apt-get update
 # apt-get install golang
 
+# Set GOPATH
+export GOPATH="/usr/share/go/"
+
 # Get Atlas Upload CLI
 cd ..
 git clone https://github.com/hashicorp/atlas-upload-cli.git
