@@ -3,6 +3,10 @@ language: ruby
 rvm:
   - 2.2.2
 
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install golang
+
 install:
   - bundle install
 
