@@ -5,14 +5,15 @@ rvm:
 
 install:
   - bundle install
+  - gem install dpl
 
 script:
   - echo "Hello, World!"
 
-addons:
-  apt:
-    packages:
-    - golang
-
-after_success:
-  - ./scripts/atlas.sh
+deploy:
+  provider: atlas
+  token: $ATLAS_TOKEN
+  app: codefordenver/freshfoodconnect
+  debug: true
+  vcs: true
+  version: true
