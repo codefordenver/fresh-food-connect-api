@@ -8,6 +8,7 @@ gem 'spring', :group => :development
 
 gem 'pg'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'thin'
 
 # authentication
 gem 'devise_token_auth'
