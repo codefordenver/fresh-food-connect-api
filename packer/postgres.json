@@ -1,0 +1,38 @@
+{
+  "variables": {
+    "digitalocean_api_key": "{{env `DO_API_KEY`}}"
+  },
+  "builders": [{
+    "type": "digitalocean",
+    "api_token": "{{user `digitalocean_api_key`}}",
+    "image": "ubuntu-15-04-x64",
+    "region": "nyc3",
+    "size": "512mb",
+    "droplet_name": "atlas.postgres.ffc",
+    "private_networking": true,
+    "snapshot_name": "Atlas Postgres Fresh Food Connect {{timestamp}}"
+  }],
+  "push": {
+  	"name": "codefordenver/freshfoodconnect-postgres"
+  },
+  "provisioners": [{
+    "type": "shell",
+    "inline": [
+      "sudo mkdir /ops",
+      "sudo chmod a+w /ops"
+    ]
+  },
+  {
+    "type": "file",
+    "source": ".",
+    "destination": "/ops"
+  },
+  {
+    "type": "shell",
+    "script": "scripts/base.sh"
+  },
+  {
+    "type": "shell",
+    "script": "scripts/postgres.sh"
+  }]
+}

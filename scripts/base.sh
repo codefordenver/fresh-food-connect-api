@@ -1,0 +1,6 @@
+# Update Packages
+echo Updating packages...
+sudo apt-get -y update
+
+# Install Dependencies
+echo Installing dependencies...
