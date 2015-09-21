@@ -14,12 +14,13 @@ Rails.application.routes.draw do
       resources :sessions, only: :create
 
       resources :users do
-        resources :locations do
-          resources :donations
-        end
+        resources :locations
+        resources :donations
       end
 
-      get 'donations', to: 'donations#list'
+      get 'donations', to: 'donations#list' # Admin Route
+      get 'locations', to: 'locations#list' # Admin Route
+
     end
   end
 end
