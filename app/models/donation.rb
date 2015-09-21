@@ -19,4 +19,8 @@ class Donation < ActiveRecord::Base
     where(created_at: from..to)
   end
 
+  def self.with_quantity
+    where("size > 0");
+  end
+
 end

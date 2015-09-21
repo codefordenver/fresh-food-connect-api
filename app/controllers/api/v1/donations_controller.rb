@@ -14,7 +14,7 @@ class Api::V1::DonationsController < Api::V1::BaseController
   # Creates a new donation resource
   # /api/:version/users/:user_id/locations/:location_id/donations
   def create
-    donation = Donation.new(params.permit(:location_id, :user_id, :size, :comments))
+    donation = current_user.donation.new(params.permit(:location_id, :size, :comments))
     if donation.valid?
       donation.save
     else
@@ -29,7 +29,7 @@ class Api::V1::DonationsController < Api::V1::BaseController
   # Allows for the update of donation information, specifically size and comments
   # /api/:version/users/:user_id/locations/:location_id/donations/:id
   def update
-    donation = Donation.find(params[:id])
+    donation = current_user.donations.find(params[:id])
     if donation.update(params.permit(:size, :comments))
       head :no_content
     else
@@ -43,7 +43,7 @@ class Api::V1::DonationsController < Api::V1::BaseController
   # /api/:version/donations?from=DateTime&to=DateTime
   def list
     begin
-      render json: Donation.within_time_range(params[:from], params[:to]).where("size > 0"), status: :ok
+      render json: Donation.with_quantity.within_time_range(params[:from], params[:to]), status: :ok
     rescue RangeError => error
       raise Exceptions::QueryError "Invalid Query String: #{error.message}"
     end
