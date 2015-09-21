@@ -20,9 +20,6 @@ Rails.application.routes.draw do
       end
 
       get 'donations', to: 'donations#list'
-
-      resources :locations
-
     end
   end
 end

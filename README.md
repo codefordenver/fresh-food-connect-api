@@ -33,7 +33,7 @@ Response:
     [
         {
             id: Int,
-            size: String (none | small | medium | large),
+            size: Int (0..3)
             location_id: Int,
             user_id: Int,
             created_at: DateTime,
@@ -62,7 +62,7 @@ Request:
     [
         {
             id: Int,
-            size: String (none | small | medium | large),
+            size: Int (0..3)
             location_id: Int,
             user_id: Int,
             created_at: DateTime,
@@ -103,7 +103,7 @@ Response:
     [
         {
             id: Int,
-            size: String (small | medium | large),
+            size: Int (0..3)
             location_id: Int,
             user_id: Int,
             created_at: DateTime,

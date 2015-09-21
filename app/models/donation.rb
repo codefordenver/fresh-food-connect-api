@@ -2,10 +2,11 @@ class Donation < ActiveRecord::Base
   belongs_to :location
   belongs_to :user
 
-  validates :size, presence: true, inclusion: { in: %w(none, small medium large) }
-
-  enum size: { none: 0, small: 1, medium: 2, large: 3 }
-
+  # 0 is Nothing to Donate
+  # 1 is Small donation
+  # 2 is Medium donation
+  # 3 is Large Donation
+  validates :size, presence: true, inclusion: { in: 0..3 }
 
   def self.within_time_range(from, to)
     from = Time.parse(from)
