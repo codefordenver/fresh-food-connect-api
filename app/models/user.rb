@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :confirmable, :omniauthable
 
   has_many :donations
-  has_many :locations, through: :donations
+  has_many :locations
 
   include DeviseTokenAuth::Concerns::User
 

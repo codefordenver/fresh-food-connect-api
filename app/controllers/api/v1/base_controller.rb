@@ -4,6 +4,7 @@ class Api::V1::BaseController < ApplicationController
 
   rescue_from Exceptions::AuthorizationError, with: :not_authorized
   rescue_from Exceptions::QueryError, with: :invalid_query_string
+  rescue_from ActiveRecord::RecordNotFound, with: :resource_not_found
 
   def options
     cors_set_access_control_headers
