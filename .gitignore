@@ -33,3 +33,6 @@ log/*
 .idea
 .ruby-version
 .ruby-gemset
+
+# Ignore Terraform Files
+.terraform

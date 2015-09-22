@@ -10,7 +10,7 @@
     "size": "512mb",
     "droplet_name": "atlas.postgres.ffc",
     "private_networking": true,
-    "snapshot_name": "Atlas Postgres Fresh Food Connect {{timestamp}}"
+    "snapshot_name": "postgres.ffc {{timestamp}}"
   }],
   "push": {
   	"name": "codefordenver/freshfoodconnect-postgres"
@@ -34,5 +34,14 @@
   {
     "type": "shell",
     "script": "scripts/postgres.sh"
+  }],
+  "post-processors": [{
+  	"type": "atlas",
+  	"artifact": "codefordenver/freshfoodconnect-postgres",
+  	"artifact_type": "digitalocean.image",
+  	"metadata": {
+  		"created_at": "{{timestamp}}",
+  		"version": "{{user `version`}}"
+  	}
   }]
 }
