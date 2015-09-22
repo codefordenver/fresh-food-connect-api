@@ -13,9 +13,5 @@ class User < ActiveRecord::Base
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
-  validates :first,     presence: true, length: { maximum: 255 }
-  validates :last,      presence: true, length: { maximum: 255 }
   validates :email,     presence: true, length: { maximum: 255 }, format: VALID_EMAIL_REGEX
-  validates :role,      presence: true
-  validates :phone,     presence: true
 end
