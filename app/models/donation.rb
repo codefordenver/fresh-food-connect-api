@@ -7,6 +7,7 @@ class Donation < ActiveRecord::Base
   # 2 is Medium donation
   # 3 is Large Donation
   validates :size, presence: true, inclusion: { in: 0..3 }
+  validates_presence_of :user_id, :location_id
 
   def self.within_time_range(from, to)
     from = Time.parse(from)
