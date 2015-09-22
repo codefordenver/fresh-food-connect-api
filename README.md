@@ -11,6 +11,12 @@
 This application uses the [Thin Ruby web server](http://code.macournoyer.com/thin/usage/). To Start the applicaton, simple type the following from the comandline.
 
         bundle exec thin start
+
+Thin doesn't necessarily show you logs that are helpful in development, so it might be useful to use the normal Rails server instead:
+
+        rails s 
+
+
         
 ## Services
 
