@@ -18,7 +18,7 @@ class Api::V1::LocationsController < Api::V1::BaseController
   def create
     @location = current_user.locations.build(location_params)
     if @location.save
-      render json: @location, status: :okay
+      render json: @location, status: :created
     else
       render json: { errors: @location.errors }, status: :unprocessable_entity
     end
@@ -28,7 +28,7 @@ class Api::V1::LocationsController < Api::V1::BaseController
     #locations determined by :check_user_access
     location = current_user.locations.find(params[:id])
     if location.update_attributes(location_params)
-      head :no_content
+      render json: location, status: :ok
     else
       render json: { errors: location.errors }, status: :unprocessable_entity
     end

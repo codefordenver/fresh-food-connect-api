@@ -5,33 +5,35 @@ class Api::V1::DonationsController < Api::V1::BaseController
 
   # Donor, Admin
   # Lists all of the donations for a given user
-  # /api/:version/users/:user_id/locations/:location_id/donations
+  # /api/:version/users/:user_id/donations
+  # optional location_id query param to filter down by location
   def index
-    render json: current_user.donations.where(params.permit(:location_id)), status: :ok
+    if params[:location_id]
+      render json: current_user.donations.where(location_id: params[:location_id]), status: :ok
+    else
+      render json: current_user.donations, status: :ok
+    end
   end
 
   # Donor
   # Creates a new donation resource
-  # /api/:version/users/:user_id/locations/:location_id/donations
+  # /api/:version/users/:user_id/donations
   def create
-    donation = current_user.donation.new(params.permit(:location_id, :size, :comments))
-    if donation.valid?
-      donation.save
+    donation = current_user.donations.build donation_params
+    if donation.save
+      render json: donation, status: :created
     else
       render json: donation.errors, status: :unprocessable_entity
     end
-
-    render json: donation, status: :created
-
   end
 
   # Donor, Admin
   # Allows for the update of donation information, specifically size and comments
-  # /api/:version/users/:user_id/locations/:location_id/donations/:id
+  # /api/:version/users/:user_id/donations/:id
   def update
     donation = current_user.donations.find(params[:id])
-    if donation.update(params.permit(:size, :comments))
-      head :no_content
+    if donation.update(donation_params)
+      render json: donation, status: :ok
     else
       render json: { errors: donation.errors }, status: :unprocessable_entity
     end
@@ -49,4 +51,8 @@ class Api::V1::DonationsController < Api::V1::BaseController
     end
   end
 
+  private 
+
+  def donation_params
+    params.require(:donation).permit(:location_id, :user_id, :size, :comments)
 end
