@@ -5,7 +5,7 @@ class Api::V1::LocationsController < Api::V1::BaseController
 
   # /api/{version}/users/:user_id/locations
   def index
-    render json: current_users.locations, status: :ok
+    render json: current_user.locations, status: :ok
   end
 
   # / api/:version/users/:user_id/locations/:location_id

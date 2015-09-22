@@ -55,4 +55,5 @@ class Api::V1::DonationsController < Api::V1::BaseController
 
   def donation_params
     params.require(:donation).permit(:location_id, :user_id, :size, :comments)
+  end
 end

@@ -58,3 +58,30 @@ Location.create!(
   pickup_date: "2015-10-15",
   user: User.last
 )
+
+Donation.create!(
+  size: 1,
+  comments: "Package on doorstep",
+  created_at: "#<DateTime: 2001-02-03T00:00:00+00:00>",
+  updated_at: "#<DateTime: 2001-02-03T00:00:00+00:00>",
+  location_id: 1,
+  user_id: 1
+)
+
+Donation.create!(
+  size: 3,
+  comments: "Find package behind fence gate",
+  created_at: "#<DateTime: 2001-02-03T00:00:00+00:00>",
+  updated_at: "#<DateTime: 2001-02-03T00:00:00+00:00>",
+  location_id: 2,
+  user_id: 2
+)
+
+Donation.create!(
+  size: 2,
+  comments: "Find package behind fence gate",
+  created_at: "#<DateTime: 2001-02-03T00:00:00+00:00>",
+  updated_at: "#<DateTime: 2001-02-03T00:00:00+00:00>",
+  location_id: 2,
+  user_id: 2
+)
