@@ -68,6 +68,10 @@ GEM
     mandrill-api (1.0.53)
       excon (>= 0.16.0, < 1.0)
       json (>= 1.7.7, < 2.0)
+    mandrill_mailer (1.0.3)
+      actionpack
+      activesupport
+      mandrill-api (~> 1.0.9)
     method_source (0.8.2)
     mime-types (2.6.2)
     mini_portile (0.6.2)
@@ -163,6 +167,7 @@ DEPENDENCIES
   devise_token_auth
   excon
   mandrill-api
+  mandrill_mailer
   omniauth
   pg
   pry
@@ -173,6 +178,3 @@ DEPENDENCIES
   rspec-rails (~> 3.0)
   spring
   thin
-
-BUNDLED WITH
-   1.10.6

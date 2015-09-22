@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
       resources :locations
 
-      post '/emails' => 'emails#send_welcome'
+      post '/emails' => 'emails#create'
 
     end
   end

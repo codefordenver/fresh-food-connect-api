@@ -22,6 +22,7 @@ group :development, :test do
 end
 
 gem 'mandrill-api'
+gem 'mandrill_mailer'
 gem 'excon'
 
 # To use ActiveModel has_secure_password
