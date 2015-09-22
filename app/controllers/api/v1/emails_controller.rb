@@ -3,6 +3,6 @@ class Api::V1::EmailsController < Api::V1::BaseController
 
   def send_welcome
   	users = User.all
-    ConfirmationMailer.send_confirmations(users).deliver
+    ConfirmationMailer.send_confirmation(users).deliver
   end
 end

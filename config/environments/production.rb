@@ -82,9 +82,6 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # mandrill config stuff, depends on config/initializers/constants.rb
-  ENV['MANDRILL_API_KEY'] = "Aw-m8vUnpIvZsRwVuMrLrg"
-  ENV['MANDRILL_USERNAME'] = "codefordenver@gmail.com"
-  ENV['SMTP_DOMAIN'] = 'freshfoodconnect.org'
   config.action_mailer.smtp_settings = {
     :address   => "smtp.mandrillapp.com",
     :port      => 587,
@@ -94,5 +91,6 @@ Rails.application.configure do
   }
 
   config.action_mailer.default_url_options = { host: ENV['SMTP_DOMAIN'] }
+  config.mandrill_mailer.default_url_options = { host: ENV['SMTP_DOMAIN'] }
 
 end
