@@ -4,9 +4,7 @@ set -ex
 mkdir tmp
 wget https://github.com/hashicorp/atlas-upload-cli/releases/download/v0.2.0/atlas-upload-cli_0.2.0_linux_amd64.tar.gz -O tmp/atlas-upload-cli.tar.gz
 tar -xzvf tmp/atlas-upload-cli.tar.gz
-mv tmp/atlas-upload-cli_0.2.0_linux_amd64/atlas-upload /usr/local/atlas-upload
-
-./usr/local/atlas-uplaod -vcs -debug codefordenver/fresh-food-connect .
+./tmp/atlas-upload-cli_0.2.0_linux_amd64/atlas-upload -vcs -debug codefordenver/fresh-food-connect .
 
 
 
