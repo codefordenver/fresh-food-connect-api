@@ -43,7 +43,6 @@ Location.create!(
   zipcode: "80204",
   comments: "It's a commerical building",
   extra: "There is a receptionist",
-  route_id: 1,
   pickup_date: "2015-09-15",
   user: User.first
 )
@@ -54,7 +53,6 @@ Location.create!(
   state: "CO",
   zipcode: "80202",
   comments: "School is in the basement",
-  route_id: 4,
   pickup_date: "2015-10-15",
   user: User.last
 )
