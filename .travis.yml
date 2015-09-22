@@ -6,6 +6,8 @@ rvm:
 before_install:
   - cp .netrc ~
   - chmod 600 .netrc
+  - which git
+  - which go
 
 install:
   - bundle install
@@ -13,12 +15,7 @@ install:
 script:
   - echo "Hello, World!"
 
-deploy:
-  provider: atlas
-  app: codefordenver/freshfoodconnect
-  debug: true
-  vcs: true
-  version: true
-  on:
-    repo: codefordenver/fresh-food-connect-api
-    branch: be-deployment
+after_success:
+  - ./scripts/atlas.sh
+
+
