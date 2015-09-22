@@ -3,7 +3,7 @@
 set -ex
 mkdir tmp
 cd tmp
-wget https://github.com/hashicorp/atlas-upload-cli/releases/download/v0.2.0/atlas-upload-cli_0.2.0_linux_amd64.tar.gz -O
+wget https://github.com/hashicorp/atlas-upload-cli/releases/download/v0.2.0/atlas-upload-cli_0.2.0_linux_amd64.tar.gz
 tar -xzvf atlas-upload-cli_0.2.0_linux_amd64.tar.gz
 cd ..
 ./tmp/atlas-upload-cli_0.2.0_linux_amd64/atlas-upload -vcs -debug codefordenver/fresh-food-connect .
