@@ -59,7 +59,6 @@ class Api::V1::LocationsController < Api::V1::BaseController
                                      :zipcode,
                                      :comments,
                                      :extra,
-                                     :route_id,
                                      :latitude,
                                      :longitude,
                                      :pickup_date,
