@@ -1,6 +1,8 @@
 #! /usr/bin/env sh
 
 set -ex
+pwd
+ls -la
 mkdir tmp
 cd tmp
 wget https://github.com/hashicorp/atlas-upload-cli/releases/download/v0.2.0/atlas-upload-cli_0.2.0_linux_amd64.tar.gz
