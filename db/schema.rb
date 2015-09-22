@@ -45,7 +45,10 @@ ActiveRecord::Schema.define(version: 20150920170040) do
     t.date     "pickup_date",              null: false
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.integer  "user_id"
   end
+
+  add_index "locations", ["user_id"], name: "index_locations_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "first",                  default: ""
@@ -79,4 +82,5 @@ ActiveRecord::Schema.define(version: 20150920170040) do
 
   add_foreign_key "donations", "locations"
   add_foreign_key "donations", "users"
+  add_foreign_key "locations", "users"
 end
