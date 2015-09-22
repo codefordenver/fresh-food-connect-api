@@ -1,8 +1,5 @@
 Rails.application.configure do
   PASSWORD_RESET_URL = "http://www.localhost:4000/reset"
-
-  config.action_mailer.default_url_options = { :host => 'localhost' }
-  config.mandrill_mailer.default_url_options = { :host => 'localhost' }
   
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -43,11 +40,4 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  config.action_mailer.smtp_settings = {
-    :address   => "smtp.mandrillapp.com",
-    :port      => 587,
-    :user_name => ENV['MANDRILL_USERNAME'],
-    :password  => ENV['MANDRILL_API_KEY'],
-    :domain    => ENV['SMTP_DOMAIN']
-  }
 end

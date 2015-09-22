@@ -1,7 +1,4 @@
 class ConfirmationMailer < MandrillMailer::TemplateMailer
-  include Rails.application.routes.url_helpers
-  include Devise::Controllers::UrlHelpers
-  default from: 'support@freshfoodconnect.org'
 
   def send_confirmation(users)
     users = Array.wrap(users) # in case you pass a single user object
