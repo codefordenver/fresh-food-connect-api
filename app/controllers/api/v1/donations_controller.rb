@@ -45,7 +45,9 @@ class Api::V1::DonationsController < Api::V1::BaseController
   # /api/:version/donations?from=DateTime&to=DateTime
   def list
     begin
-      render json: Donation.with_quantity.within_time_range(params[:from], params[:to]), status: :ok
+      donations = Donation.with_quantity.within_time_range(params[:from], params[:to]).includes(:location)
+      locations = donations.map(&:location)
+      render json: {donations: donations, locations: locations}, status: :ok
     rescue RangeError => error
       raise Exceptions::QueryError "Invalid Query String: #{error.message}"
     end
