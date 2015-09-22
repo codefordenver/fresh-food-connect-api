@@ -4,8 +4,6 @@ rvm:
   - 2.2.2
 
 before_install:
-  - cp .netrc ~
-  - chmod 600 .netrc
   - which git
   - which go
 
