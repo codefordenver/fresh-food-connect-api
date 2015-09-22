@@ -1,13 +1,12 @@
 class ConfirmationMailer < MandrillMailer::TemplateMailer
   default from: 'support@freshfoodconnect.org'
 
-  def confirm
-    users = User.all
+  def send_confirmations(users)
+    users = Array.wrap(users) # in case you pass a single user object
     emails = users.map{|user| {email: user.email, name: "#{user.first} #{user.last}"}}
 
     mandrill_mail(
-      template: 'ffc-donation',
-      subject: I18n.t('invitation_mailer.invite.subject'),
+      template: 'Donation Reminder',
       to: emails,
         # to: invitation.email,
         # to: { email: invitation.email, name: 'Honored Guest' },
@@ -21,7 +20,7 @@ class ConfirmationMailer < MandrillMailer::TemplateMailer
         { user.email =>
           {
             "FIRST_NAME" => user.first,
-            "USER_URL" => user_url(user)
+            "USER_URL" => "/users"
           }
         }
       end

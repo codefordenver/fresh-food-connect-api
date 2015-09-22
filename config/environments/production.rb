@@ -82,15 +82,17 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # mandrill config stuff, depends on config/initializers/constants.rb
+  ENV['MANDRILL_API_KEY'] = "Aw-m8vUnpIvZsRwVuMrLrg"
+  ENV['MANDRILL_USERNAME'] = "codefordenver@gmail.com"
+  ENV['SMTP_DOMAIN'] = 'freshfoodconnect.org'
   config.action_mailer.smtp_settings = {
-      address: SMTP_ADDRESS,
-      authentication: :plain
-      domain: SMTP_DOMAIN,
-      enable_starttls_auto: true,
-      password: SMTP_PASSWORD,
-      port: "587",
-      user_name: SMTP_USERNAME
+    :address   => "smtp.mandrillapp.com",
+    :port      => 587,
+    :user_name => ENV['MANDRILL_USERNAME'],
+    :password  => ENV['MANDRILL_API_KEY'],
+    :domain    => ENV['SMTP_DOMAIN']
   }
-  config.action_mailer.default_url_options = { host: SMTP_DOMAIN }
+
+  config.action_mailer.default_url_options = { host: ENV['SMTP_DOMAIN'] }
 
 end
