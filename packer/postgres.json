@@ -1,10 +1,10 @@
 {
   "variables": {
-    "digitalocean_api_key": "{{env `DO_API_KEY`}}"
+    "digitalocean_token": "{{env `DIGITALOCEAN_TOKEN`}}"
   },
   "builders": [{
     "type": "digitalocean",
-    "api_token": "{{user `digitalocean_api_key`}}",
+    "api_token": "{{user `digitalocean_token`}}",
     "image": "ubuntu-15-04-x64",
     "region": "nyc3",
     "size": "512mb",

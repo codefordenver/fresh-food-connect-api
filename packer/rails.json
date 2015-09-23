@@ -1,10 +1,14 @@
 {
   "variables": {
-    "digitalocean_api_key": "{{env `DO_API_KEY`}}"
+    "digitalocean_token": "{{env `DIGITALOCEAN_TOKEN`}}",
+    "from_email_address": "{{env `FROM_EMAIL_ADDRESS`}}",
+    "mandrill_username": "{{env `MANDRILL_USERNAME`}}",
+    "mandrill_api_key": "{{env `MANDRILL_API_KEY`}}",
+    "smtp_domain": "{{env `SMTP_DOMAIN`}}"
   },
   "builders": [{
     "type": "digitalocean",
-    "api_token": "{{user `digitalocean_api_key`}}",
+    "api_token": "{{user `digitalocean_token`}}",
     "image": "ubuntu-15-04-x64",
     "region": "nyc3",
     "size": "512mb",
@@ -17,7 +21,14 @@
   },
   "provisioners": [{
     "type": "shell",
+    "enviroment_vars": [
+      "FROM_EMAIL_ADDRESS={{user `from_email_address`}}",
+      "MANDRILL_USERNAME={{user `mandrill_username`}}",
+      "MANDRILL_API_KEY={{user `mandrill_api_key`}}",
+      "SMTP_DOMAIN={{user `smtp_domain`}}"
+    ],
     "inline": [
+      "printenv"
       "sudo mkdir /ops",
       "sudo chmod a+w /ops"
     ]
