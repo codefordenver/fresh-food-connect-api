@@ -21,14 +21,14 @@
   },
   "provisioners": [{
     "type": "shell",
-    "enviroment_vars": [
+    "environment_vars": [
       "FROM_EMAIL_ADDRESS={{user `from_email_address`}}",
       "MANDRILL_USERNAME={{user `mandrill_username`}}",
       "MANDRILL_API_KEY={{user `mandrill_api_key`}}",
       "SMTP_DOMAIN={{user `smtp_domain`}}"
     ],
     "inline": [
-      "printenv"
+      "printenv",
       "sudo mkdir /ops",
       "sudo chmod a+w /ops"
     ]
