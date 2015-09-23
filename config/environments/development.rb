@@ -1,7 +1,5 @@
 Rails.application.configure do
   PASSWORD_RESET_URL = "http://www.localhost:4000/reset"
-
-  config.action_mailer.default_url_options = { :host => 'localhost' }
   
   # Settings specified here will take precedence over those in config/application.rb.
 
