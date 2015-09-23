@@ -7,40 +7,42 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 User.create(
-  first: "Code", 
-  last: "for Denver", 
-  email: "codefordenver@gmail.com", 
-  password: "CFDFFC2015", 
-  role: :admin, 
+  first: "Code",
+  last: "for Denver",
+  email: "codefordenver@gmail.com",
+  password: "CFDFFC2015",
+  role: :admin,
   phone: "555.555.5555",
   confirmed_at: Date.today
 )
 
 User.create!(
-  first: "Donor", 
-  last: "1", 
-  email: "donor1@nowhere.org", 
-  password: "CFDFFC2015", 
-  role: :donor, 
+  first: "Donor",
+  last: "1",
+  email: "donor1@nowhere.org",
+  password: "CFDFFC2015",
+  role: :donor,
   phone: "555.555.5555",
   confirmed_at: Date.today
 )
 
 User.create!(
-  first: "Cyclist", 
-  last: "1", 
-  email: "cyclist1@nowhere.org", 
-  password: "CFDFFC2015", 
-  role: :cyclist, 
+  first: "Cyclist",
+  last: "1",
+  email: "cyclist1@nowhere.org",
+  password: "CFDFFC2015",
+  role: :cyclist,
   phone: "555.555.5555",
   confirmed_at: Date.today
 )
 
 Location.create!(
   address: "1062 Delaware St",
-  city: "Denver", 
+  city: "Denver",
   state: "CO",
   zipcode: "80204",
+  latitude: 39.733464,
+  longitude: -104.992615,
   comments: "It's a commerical building",
   extra: "There is a receptionist",
   pickup_date: "2015-09-15",
@@ -49,9 +51,11 @@ Location.create!(
 
 Location.create!(
   address: "1510 Blake St",
-  city: "Denver", 
+  city: "Denver",
   state: "CO",
   zipcode: "80202",
+  latitude: 39.7496354,
+  longitude: -105.0001058,
   comments: "School is in the basement",
   pickup_date: "2015-10-15",
   user: User.last
