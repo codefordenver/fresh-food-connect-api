@@ -3,9 +3,21 @@ atlas {
     name = "codefordenver/freshfoodconnect-production"
 }
 
+# Import AWS Route 53 Module
+module "route53" {
+  source= "../module-route53"
+}
+
 # Import Digital Ocean Module
 module "digitalocean" {
   source = "../module-digitalocean"
+}
+
+# Create Production Rails Droplet
+module "rails" {
+	source = "../module-rails"
+
+	name = "rails.prod.ffc"
 }
 
 # Create Production Postgres Droplet
