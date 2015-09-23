@@ -18,7 +18,7 @@ module "rails" {
 	source = "../module-rails"
 
 	name = "rails.prod.ffc"
-	create_before_destroy = true
+	ssh_keys = "${module.digitalocean.ssh_keys}"
 }
 
 # Create Production Postgres Droplet
@@ -26,6 +26,6 @@ module "postgres" {
   source = "../module-postgres"
 
   name = "postgres.prod.ffc"
-  backups = "true"
-  create_before_destroy = true
+  backups = true
+  ssh_keys = "${module.digitalocean.ssh_keys}"
 }

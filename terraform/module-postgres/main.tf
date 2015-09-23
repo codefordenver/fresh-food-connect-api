@@ -1,5 +1,6 @@
 variable "name" {}
 variable "backups" {}
+variable "ssh_keys" {}
 
 # Reference Postgres Artifact in Atlas
 resource "atlas_artifact" "postgres" {
@@ -13,4 +14,9 @@ resource "digitalocean_droplet" "postgres" {
   name = "${var.name}"
   region = "nyc3"
   size = "512mb"
+  ssh_keys = ["${var.ssh_keys}"]
+
+  lifecycle {
+  	create_before_destroy = true
+  }
 }
