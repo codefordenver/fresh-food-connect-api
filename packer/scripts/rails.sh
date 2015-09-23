@@ -1,7 +1,8 @@
-# Add the RVM Repository
+# Add the RVM Repository, Install, and Source RVM
 sudo apt-add-repository -y ppa:rael-gc/rvm
 sudo apt-get -y update
 sudo apt-get -y install rvm
+source /etc/profile.d/rvm.sh
 
 # Install Ruby 2.2.2
 rvm install ruby-2.2.2
