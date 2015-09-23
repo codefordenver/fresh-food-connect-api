@@ -30,7 +30,7 @@ class Api::V1::BaseController < ApplicationController
   end
 
   def not_authorized(exception)
-    render json: { errors: exception.to_s }, status: :unauthorized
+    render json: { errors: exception.to_s }, status: :forbidden
   end
 
   def resource_not_found(exception)
