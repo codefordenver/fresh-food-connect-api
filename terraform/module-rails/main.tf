@@ -14,6 +14,7 @@ resource "digitalocean_droplet" "rails" {
   region = "nyc3"
   size = "512mb"
   ssh_keys = ["${var.ssh_keys}"]
+  private_networking = true
 
   lifecycle {
   	create_before_destroy = true
