@@ -10,11 +10,12 @@ class ConfirmationMailer < MandrillMailer::TemplateMailer
       important: true,
       inline_css: true,
       recipient_vars: users.map do |user|
+        location_id = user.locations.first.try(:id) # in case for some reason user doesnt have any locations, this will just return nil instead of erroring
         { user.email =>
           {
             "FIRST_NAME" => user.first,
-            "USER_YES_DONATION_URL" => confirm_yes_url(user.id),
-            "USER_NO_DONATION_URL" => confirm_no_url
+            "USER_YES_DONATION_URL" => confirm_yes_url(user.id, location_id),
+            "USER_NO_DONATION_URL" => confirm_no_url(location_id)
           }
         }
       end
@@ -23,12 +24,12 @@ class ConfirmationMailer < MandrillMailer::TemplateMailer
 
   # I realize this isn't great but rails url helpers aren't available here 
   # so I'm just hacking this together until a more elegant solution can be figured out post pilot
-  def confirm_yes_url(user_id)
-    default_host + "/users/#{user_id}/donations/new"
+  def confirm_yes_url(user_id, location_id)
+    default_host + "/users/#{user_id}/donations/new?location_id=#{location_id}"
   end
 
-  def confirm_no_url
-    default_host + "/sorrynotthistime"
+  def confirm_no_url(location_id)
+    default_host + "/sorrynotthistime?location_id=#{location_id}"
   end
 
   def default_host
