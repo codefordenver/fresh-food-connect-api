@@ -18,6 +18,7 @@ module "rails" {
 	source = "../module-rails"
 
 	name = "rails.prod.ffc"
+	create_before_destroy = true
 }
 
 # Create Production Postgres Droplet
@@ -26,4 +27,5 @@ module "postgres" {
 
   name = "postgres.prod.ffc"
   backups = "true"
+  create_before_destroy = true
 }
