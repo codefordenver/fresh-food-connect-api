@@ -1,0 +1,47 @@
+{
+  "variables": {
+    "digitalocean_api_key": "{{env `DO_API_KEY`}}"
+  },
+  "builders": [{
+    "type": "digitalocean",
+    "api_token": "{{user `digitalocean_api_key`}}",
+    "image": "ubuntu-15-04-x64",
+    "region": "nyc3",
+    "size": "512mb",
+    "droplet_name": "atlas.rails.ffc",
+    "private_networking": true,
+    "snapshot_name": "rails.ffc {{timestamp}}"
+  }],
+  "push": {
+  	"name": "codefordenver/freshfoodconnect-rails"
+  },
+  "provisioners": [{
+    "type": "shell",
+    "inline": [
+      "sudo mkdir /ops",
+      "sudo chmod a+w /ops"
+    ]
+  },
+  {
+    "type": "file",
+    "source": ".",
+    "destination": "/ops"
+  },
+  {
+    "type": "shell",
+    "script": "scripts/base.sh"
+  },
+  {
+    "type": "shell",
+    "script": "scripts/rails.sh"
+  }],
+  "post-processors": [{
+  	"type": "atlas",
+  	"artifact": "codefordenver/freshfoodconnect-rails",
+  	"artifact_type": "digitalocean.image",
+  	"metadata": {
+  		"created_at": "{{timestamp}}",
+  		"version": "{{user `version`}}"
+  	}
+  }]
+}
