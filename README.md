@@ -31,7 +31,7 @@ Thin doesn't necessarily show you logs that are helpful in development, so it mi
 
 Request:
 
-    GET http://{host}:{port}/api/{version}/users/{user_id}/locations/{location_id}/donations
+    GET http://{host}:{port}/api/{version}/users/{user_id}/donations
     
 Response:
     HTTP 200 OKAY
@@ -42,6 +42,7 @@ Response:
             size: Int (0..3)
             location_id: Int,
             user_id: Int,
+            location_id: Int,
             created_at: DateTime,
             updated_at: DateTime
         },
@@ -54,12 +55,11 @@ Any invalid request body parameters will result in a `422 Unprocessable Entity` 
 
 Request:
 
-    POST http://{host}:{port}/api/{version}/users/{user_id}/locations/{location_id}/donations
+    POST http://{host}:{port}/api/{version}/users/{user_id}/donations?location_id={location_id}
     
     {
         size: INT (none = 0 | small = 1 | medium = 2 | large = 3),
         comments: String (max length 255 characters)
-        
     }
     
  Response:
@@ -85,7 +85,7 @@ This route will return a `204 No Content` on successful updates because it assum
 
 Request:
 
-    PUT http://{host}:{port}/api/{version}/users/{user_id}/locations/{location_id}/donations/{id}
+    PUT http://{host}:{port}/api/{version}/users/{user_id}/donations/{id}
     
     {
         size: INT (none = 0 | small = 1 | medium = 2 | large = 3),
