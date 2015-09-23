@@ -16,7 +16,7 @@ sudo apt-get install -y nodejs && sudo ln -sf /usr/bin/nodejs /usr/local/bin/nod
 
 # Install Dependencies
 cd /ops/app
-bundle install --production --without development test
+bundle install --without development test
 
 # Compile Rails Assets and Run Database Migrations
 bundle exec rake assets:precompile db:migrate
