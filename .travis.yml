@@ -14,7 +14,6 @@ script:
   - echo "Hello, World!"
 
 after_success:
-  - git fetch --unshallow
   - ./scripts/atlas.sh
 
 
