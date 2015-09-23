@@ -11,7 +11,7 @@ cd ../fresh-food-connect-api
 git checkout -
 git branch
 git symbolic-ref HEAD
-./../tmp/atlas-upload-cli_0.2.0_linux_amd64/atlas-upload -vcs -debug codefordenver/fresh-food-connect .
+./../tmp/atlas-upload-cli_0.2.0_linux_amd64/atlas-upload -vcs -debug codefordenver/freshfoodconnect .
 
 
 
