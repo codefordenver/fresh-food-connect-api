@@ -5,4 +5,4 @@ sudo apt-get install -y postgresql postgresql-contrib
 sudo -u postgres psql postgres postgres -c "ALTER USER postgres WITH ENCRYPTED PASSWORD 'postgres'"
 
 # Switch to Postgres User
-sudo -i -u postgres
+# sudo -i -u postgres
