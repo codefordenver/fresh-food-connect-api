@@ -14,6 +14,9 @@ gem install bundler --no-rdoc --no-ri
 # Install NodeJS for Rails Asset Compiler
 sudo apt-get install -y nodejs && sudo ln -sf /usr/bin/nodejs /usr/local/bin/node
 
+# Install PostgreSQL Client for PG Gem
+sudo apt-get install libpq-dev
+
 # Install Dependencies
 cd /ops/app
 bundle install --without development test
