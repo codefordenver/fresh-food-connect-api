@@ -14,4 +14,11 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
   validates :email,     presence: true, length: { maximum: 255 }, format: VALID_EMAIL_REGEX
+
+  def confirmation_required?
+    # This is a temporary override that allows users to login without confirming their e-mail
+    # See: http://www.rubydoc.info/github/plataformatec/devise/master/Devise/Models/Confirmable#confirmation_required%3F-instance_method
+    # For additional information
+    false
+  end
 end
