@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
       get 'donations', to: 'donations#list' # Admin Route
       get 'locations', to: 'locations#list' # Admin Route
-
+      put 'locations/pickup_day' => 'locations#update_pickup_day'
       post '/emails' => 'emails#send_reminders'
 
     end

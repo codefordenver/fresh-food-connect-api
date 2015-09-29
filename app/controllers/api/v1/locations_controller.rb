@@ -1,6 +1,6 @@
 class Api::V1::LocationsController < Api::V1::BaseController
-  before_action :ensure_owner_of_resource, except: [:list]
-  before_action :ensure_admin_user, only: [:list]
+  before_action :ensure_owner_of_resource, except: [:list, :update_pickup_day]
+  before_action :ensure_admin_user, only: [:list, :update_pickup_day]
 
 
   # /api/{version}/users/:user_id/locations
@@ -34,6 +34,18 @@ class Api::V1::LocationsController < Api::V1::BaseController
     end
   end
 
+  # PUT /locations/pickup_day
+  # updates pickup day for all locations at once
+  def update_pickup_day
+    if valid_pickup_day?(params[:pickup_day])
+      locations = Location.all 
+      locations.update_all(pickup_day: params[:pickup_day])
+      head :no_content
+    else
+      render json: { errors: ['Not a valid pickup day. Must provide a day of the week, e.g. "Tuesday".'] }, status: 422
+    end
+  end
+
   # /api/:version/users/:user_id/locations/:location_id
   def destroy
     @location = current_user.locations.find(params[:id])
@@ -52,6 +64,10 @@ class Api::V1::LocationsController < Api::V1::BaseController
 
   private
 
+  def valid_pickup_day?(day)
+    Location.pickup_days.include? day.capitalize
+  end
+
   def location_params
     params.require(:location).permit(:address,
                                      :city,
@@ -64,7 +80,8 @@ class Api::V1::LocationsController < Api::V1::BaseController
                                      :pickup_date,
                                      :created_at,
                                      :updated_at,
-                                     :user_id)
+                                     :user_id, 
+                                     :pickup_day)
   end
 
 end

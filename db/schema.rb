@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150922025239) do
+ActiveRecord::Schema.define(version: 20150929003140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20150922025239) do
     t.date     "pickup_date"
     t.text     "comments"
     t.text     "extra"
+    t.integer  "pickup_day"
   end
 
   add_index "locations", ["user_id"], name: "index_locations_on_user_id", using: :btree
