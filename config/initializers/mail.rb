@@ -7,4 +7,3 @@ ActionMailer::Base.smtp_settings = {
 }
 ActionMailer::Base.default_url_options = { host: ENV['SMTP_DOMAIN'] }
 ActionMailer::Base.delivery_method = :smtp
-ActionMailer::Base.default :from => ENV['FROM_EMAIL_ADDRESS']
