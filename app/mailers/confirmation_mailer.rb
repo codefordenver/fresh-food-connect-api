@@ -34,6 +34,6 @@ class ConfirmationMailer < MandrillMailer::TemplateMailer
   end
 
   def default_host
-    ActionMailer::Base.default_url_options[:host]
+    "www." + ActionMailer::Base.default_url_options[:host]
   end
 end
