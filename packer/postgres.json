@@ -1,6 +1,9 @@
 {
   "variables": {
-    "digitalocean_token": "{{env `DIGITALOCEAN_TOKEN`}}"
+    "digitalocean_token": "{{env `DIGITALOCEAN_TOKEN`}}",
+    "postgres_user": "{{env `POSTGRES_USER`}}",
+    "postgres_password": "{{env `POSTGRES_PASSWORD`}}",
+    "postgres_env": "{{env `POSTGRES_ENV`}}"
   },
   "builders": [{
     "type": "digitalocean",
@@ -20,6 +23,12 @@
     "inline": [
       "sudo mkdir /ops",
       "sudo chmod a+w /ops"
+    ],
+    "type": "shell",
+    "environment_vars": [
+      "POSTGRES_USER={{user `postgres_user`}}",
+      "POSTGRES_PASSWORD={{user `postgres_password`}}",
+      "POSTGRES_ENV={{user `postgres_env`}}"
     ]
   },
   {
