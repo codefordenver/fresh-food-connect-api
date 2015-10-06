@@ -7,6 +7,7 @@ class ApplicationController < ActionController::API
   protected
 
   def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) << {locations_attributes: [:id, :address, :city, :state, :zipcode, :latitude, :longitude]}
     devise_parameter_sanitizer.for(:sign_up) << :email
     devise_parameter_sanitizer.for(:sign_up) << :password
     devise_parameter_sanitizer.for(:sign_up) << :password_confirmation
@@ -14,5 +15,6 @@ class ApplicationController < ActionController::API
     devise_parameter_sanitizer.for(:sign_up) << :last
     devise_parameter_sanitizer.for(:sign_up) << :role
     devise_parameter_sanitizer.for(:sign_up) << :phone
+    # binding.pry
   end
 end
