@@ -1,4 +1,4 @@
-class Api::V1::UsersController < DeviseTokenAuth::ApplicationController
+class Api::V1::UsersController < Api::V1::BaseController
   # before_action :admin_access_required, only: [:index]
 
   def index
