@@ -99,6 +99,7 @@ class Api::V1::RegistrationsController < DeviseTokenAuth::RegistrationsControlle
     devise_parameter_sanitizer.for(:sign_up) << :last
     devise_parameter_sanitizer.for(:sign_up) << :role
     devise_parameter_sanitizer.for(:sign_up) << :phone
+    devise_parameter_sanitizer.for(:sign_up) << {locations_attributes: [:id, :address, :city, :state, :zipcode, :latitude, :longitude]}
     devise_parameter_sanitizer.for(:account_update) << :email
     devise_parameter_sanitizer.for(:account_update) << :password
     devise_parameter_sanitizer.for(:account_update) << :password_confirmation
