@@ -23,10 +23,8 @@ class Api::V1::RegistrationsController < DeviseTokenAuth::RegistrationsControlle
     end
 
     # if whitelist is set, validate redirect_url against whitelist
-    if DeviseTokenAuth.redirect_whitelist
-      unless DeviseTokenAuth.redirect_whitelist.include?(@redirect_url)
-        return render_create_error_redirect_url_not_allowed
-      end
+    if DeviseTokenAuth.redirect_whitelist and !DeviseTokenAuth.redirect_whitelist.include?(@redirect_url)
+      return render_create_error_redirect_url_not_allowed
     end
 
     begin
