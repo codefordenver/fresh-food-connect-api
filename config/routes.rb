@@ -7,7 +7,8 @@ Rails.application.routes.draw do
 
   # mounting this outside of the api/v1 namespace resolves an annoying bug
   mount_devise_token_auth_for 'User', at: 'api/v1/auth', controllers: {
-    passwords:  'api/v1/passwords'
+    passwords:  'api/v1/passwords',
+    registrations: 'api/v1/registrations'
   }
 
   namespace :api, defaults: { format: 'json' } do

@@ -3,7 +3,6 @@ class Api::V1::PasswordsController < DeviseTokenAuth::PasswordsController
   	@resource = resource_class.reset_password_by_token(resource_params)
       unless @resource
         return render json: {
-          success: false,
           errors: ['Unauthorized']
         }, status: 401
       end
@@ -11,7 +10,6 @@ class Api::V1::PasswordsController < DeviseTokenAuth::PasswordsController
       # make sure account doesn't use oauth2 provider
       unless @resource.provider == 'email'
         return render json: {
-          success: false,
           errors: [I18n.t("devise_token_auth.passwords.password_not_required", provider: @resource.provider.humanize)]
         }, status: 422
       end
@@ -19,7 +17,6 @@ class Api::V1::PasswordsController < DeviseTokenAuth::PasswordsController
       # ensure that password params were sent
       unless password_resource_params[:password]
         return render json: {
-          success: false,
           errors: [I18n.t("devise_token_auth.passwords.missing_passwords")]
         }, status: 422
       end
@@ -35,8 +32,7 @@ class Api::V1::PasswordsController < DeviseTokenAuth::PasswordsController
         }
       else
         return render json: {
-          success: false,
-          errors: @resource.errors.to_hash.merge(full_messages: @resource.errors.full_messages)
+          errors: @resource.errors.full_messages
         }, status: 422
       end
   end
