@@ -1,4 +1,5 @@
 class Api::V1::RegistrationsController < DeviseTokenAuth::RegistrationsController
+  before_action :configure_permitted_parameters
 
   def create
     @resource            = resource_class.new(sign_up_params)
