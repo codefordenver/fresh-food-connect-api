@@ -37,9 +37,9 @@ class Api::V1::LocationsController < Api::V1::BaseController
   # PUT /locations/pickup_day
   # updates pickup day for all locations at once
   def update_pickup_day
-    if valid_pickup_day?(params[:pickup_day])
+    if day_int = find_day_int(params[:pickup_day])
       locations = Location.all 
-      locations.update_all(pickup_day: params[:pickup_day])
+      locations.update_all(pickup_day: day_int)
       head :no_content
     else
       render json: { errors: ['Not a valid pickup day. Must provide a day of the week, e.g. "Tuesday".'] }, status: 422
@@ -64,8 +64,8 @@ class Api::V1::LocationsController < Api::V1::BaseController
 
   private
 
-  def valid_pickup_day?(day)
-    Location.pickup_days.include? day.capitalize
+  def find_day_int(str)
+    Location.pickup_days[str.capitalize]
   end
 
   def location_params
