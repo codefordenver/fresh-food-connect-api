@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150929003140) do
+ActiveRecord::Schema.define(version: 20151011162154) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "donation_tokens", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "expires_at"
+    t.datetime "used_at"
+    t.integer  "donation_id"
+    t.string   "token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "location_id"
+  end
+
+  add_index "donation_tokens", ["token"], name: "index_donation_tokens_on_token", using: :btree
 
   create_table "donations", force: :cascade do |t|
     t.integer  "size",        null: false

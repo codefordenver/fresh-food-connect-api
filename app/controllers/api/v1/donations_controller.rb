@@ -3,6 +3,9 @@ class Api::V1::DonationsController < Api::V1::BaseController
   before_action :ensure_admin_user, only: :list
   before_action :ensure_owner_of_resource, only: [:index, :update]
 
+  skip_action :authenticate!, only: :create
+  before_action :authenticate_with_token, only: :create
+
   # Donor, Admin
   # Lists all of the donations for a given user
   # /api/:version/users/:user_id/donations
@@ -19,7 +22,8 @@ class Api::V1::DonationsController < Api::V1::BaseController
   # Creates a new donation resource
   # /api/:version/users/:user_id/donations
   def create
-    donation = current_user.donations.build donation_params
+    u = @user || current_user
+    donation = u.donations.build donation_params
     if donation.save
       render json: donation, status: :created
     else
@@ -54,6 +58,19 @@ class Api::V1::DonationsController < Api::V1::BaseController
   end
 
   private 
+
+  def authenticate_with_token
+    if params[:token]
+      dt = DonationToken.find_by(token: token)
+      if dt and !dt.expired?
+        @user = dt.user
+      else
+        return render json: {errors: ["Invalid credentials"]}, status: 401
+      end
+    else
+      authenticate!
+    end
+  end
 
   def donation_params
     params.require(:donation).permit(:location_id, :user_id, :size, :comments)

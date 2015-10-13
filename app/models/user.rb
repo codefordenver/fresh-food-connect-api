@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :donations
   has_many :locations
+  has_many :donation_tokens
   accepts_nested_attributes_for :locations
 
   include DeviseTokenAuth::Concerns::User
