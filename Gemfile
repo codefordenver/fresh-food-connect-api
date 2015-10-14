@@ -9,6 +9,10 @@ gem 'spring', :group => :development
 gem 'pg'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'thin'
+gem 'mandrill-api'
+gem 'mandrill_mailer'
+gem 'excon'
+gem 'active_model_serializers'
 
 # authentication
 gem 'devise_token_auth'
@@ -21,9 +25,6 @@ group :development, :test do
   gem "pry-nav"
 end
 
-gem 'mandrill-api'
-gem 'mandrill_mailer'
-gem 'excon'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
