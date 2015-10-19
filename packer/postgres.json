@@ -20,15 +20,17 @@
   },
   "provisioners": [{
     "type": "shell",
-    "inline": [
-      "sudo mkdir /ops",
-      "sudo chmod a+w /ops"
-    ],
-    "type": "shell",
     "environment_vars": [
       "POSTGRES_USER={{user `postgres_user`}}",
       "POSTGRES_PASSWORD={{user `postgres_password`}}",
       "POSTGRES_ENV={{user `postgres_env`}}"
+    ],
+    "inline": [
+      "sudo mkdir /ops",
+      "sudo chmod a+w /ops",
+      "sudo echo 'export POSTGRES_USER='$POSTGRES_USER >> /etc/profile.d/envvars.sh",
+      "sudo echo 'export POSTGRES_PASSWORD='$POSTGRES_PASSWORD >> /etc/profile.d/envvars.sh",
+      "sudo echo 'export POSTGRES_ENV='$POSTGRES_ENV >> /etc/profile.d/envvars.sh"
     ]
   },
   {
