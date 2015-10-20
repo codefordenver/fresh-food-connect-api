@@ -32,7 +32,7 @@
       "sudo echo 'export FROM_EMAIL_ADDRESS='$FROM_EMAIL_ADDRESS >> /etc/profile.d/envvars.sh",
       "sudo echo 'export MANDRILL_USERNAME='$MANDRILL_USERNAME >> /etc/profile.d/envvars.sh",
       "sudo echo 'export MANDRILL_API_KEY='$MANDRILL_API_KEY >> /etc/profile.d/envvars.sh",
-      "sudo echo 'export SMTP_DOMAIN='$SMTP_DOMAIN >> /etc/profile.d/envvars.sh"
+      "sudo echo 'export SMTP_DOMAIN='$SMTP_DOMAIN >> /etc/profile.d/envvars.sh",
       "sudo echo 'export DATABASE_URL='$DATABASE_URL >> /etc/profile.d/envvars.sh",
       "whoami",
       "sudo mkdir /ops",
