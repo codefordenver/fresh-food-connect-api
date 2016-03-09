@@ -15,6 +15,8 @@ gem 'devise_token_auth'
 gem 'omniauth'
 
 group :test do
+  gem 'factory_girl_rails'
+  gem 'faker'
   gem 'json-schema'
 end
 

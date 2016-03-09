@@ -1,10 +1,11 @@
 module Api
   module V1
     module Admin
-      class PickupSchedulesController < ApplicationController
+      class PickupSchedulesController < BaseController
         include ActionController::ImplicitRender
 
         respond_to :json
+        before_action :ensure_admin_user
 
         def create
           pickup_schedule = PickupSchedule.create(pickup_schedule_params)
