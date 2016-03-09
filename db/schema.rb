@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150929003140) do
+ActiveRecord::Schema.define(version: 20160309182549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,16 @@ ActiveRecord::Schema.define(version: 20150929003140) do
   end
 
   add_index "locations", ["user_id"], name: "index_locations_on_user_id", using: :btree
+
+  create_table "pickup_schedules", force: :cascade do |t|
+    t.string "zip_code"
+    t.text   "notification_text"
+    t.string "pickup_time_range_start"
+    t.string "pickup_time_range_end"
+    t.date   "pickup_date_range_start"
+    t.date   "pickup_date_range_end"
+    t.string "notification_time"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "first",                  default: ""

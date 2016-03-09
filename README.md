@@ -22,6 +22,41 @@ Thin doesn't necessarily show you logs that are helpful in development, so it mi
 * All Authentication headers must be present in the request
 * For PUT/POST calls, should contain a supported Content-Type for content negotiation`
 
+### Pickup Schedules
+
+#### Creating a Pickup Schedule
+**This resource is only authorized for admins**
+
+Request:
+
+        POST http://{host}:{port}/api/{version}/admin/pickup_schedules
+
+        {
+          zip_code: String,
+          notification_text: Text,
+          notification_time: String,
+          pickup_date_range_end: Date,
+          pickup_date_range_start: Date,
+          pickup_time_range_end: String,
+          pickup_time_range_start: String,
+        }
+
+Response:
+        HTTP 201 CREATED
+
+        [
+            {
+                id: Int,
+                notification_text: Text,
+                notification_time: String,
+                pickup_date_range_end: Date,
+                pickup_date_range_start: Date,
+                pickup_time_range_end: String,
+                pickup_time_range_start: String,
+            },
+            ...
+        ]
+
 ### Donations
 
 #### Getting donations for a given user at a given location

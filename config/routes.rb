@@ -13,6 +13,9 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
+      namespace :admin do
+        resources :pickup_schedules, only: [:create, :show]
+      end
 
       resources :sessions, only: :create
 

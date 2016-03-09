@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "properties": {
+    "id": { "type": "integer" },
+    "zip_code": { "type": "string" },
+    "notification_text": { "type": "string" },
+    "pickup_time_range_start": { "type": "string" },
+    "pickup_time_range_end": { "type": "string" },
+    "pickup_date_range_start": { "type": "string", "format": "date" },
+    "pickup_date_range_end": { "type": "string", "format": "date" },
+    "notification_time": { "type": "string", "format": "date" }
+  }
+}

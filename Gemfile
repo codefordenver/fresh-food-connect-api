@@ -14,6 +14,10 @@ gem 'thin'
 gem 'devise_token_auth'
 gem 'omniauth'
 
+group :test do
+  gem 'json-schema'
+end
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem "awesome_print"
