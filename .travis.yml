@@ -1,10 +1,21 @@
-
 language: ruby
 rvm:
-  - 2.2.2
-
+- 2.3.0
+addons:
+  postgresql: '9.3'
+before_script:
+- psql -c 'create database freshfoodconnect_test;' -U postgres
 install:
-  - bundle install
-  
-script:
-  - echo "Hello, World!"
+- bundle install
+notifications:
+  email: false
+env:
+  SECRET_TOKEN: 1a59582dc4cd6e4d12d96abaf136b7575b149f9f754fc44b9320a8154d24c496622b4db541f79c662ed371ff4dd3988b0509e269cf18e99a9e89819420e5c869
+  SECRET_KEY_BASE: dc297006a32b0b9ea2187823efeacdb38e68ade18299bae2f40e7f24a723af8c203c2d7a23cda5e3380d36771d0ce73445f8e0a6b3784cbe5c412ef904129740
+  DEVISE_SECRET_KEY: c25c517398def1e76d30676cc5f3c8124ca2cf902c0e50be4395dbf40697412888647fb5d11bbb2c475b8210263454dfc3866bd0ecce537d4817d4a0d6223f77
+deploy:
+  provider: heroku
+  app:
+    an-heroku-staging-deploy: fresh-food-connect-api-staging
+  api_key:
+    secure: QD2qkU1ZtEmlAO6axBEx7GbQ314mzNYHVJdfs6ilybLWBmiDrVmbRxWkBbTWGcgYeMo+AO7Vxv0v8tR+xjFr5N6xtGar13NkYIM/066RmldbJz/XQ3OgmKtDxR5cYqwvWn05trjHPcKx6N1Wn7fSmqVTDJxhzG8PKc/AEJe3+snAZaIkOPWrva1/RLsbZSZoFpEsrj5Qt2XnUEL7HzsS95oSs/LR6DuqWmvk6yPG3CKrlpCo6apG7sI/JHRQBnvPmPHJYIqEXXEl401Tu94IHnBQWuq2OSogCJ5AHTKOet1zAURoQ/RUHLeiSJnlmQEJwed9iKRczQr2NGnEFkSX1BmH2ri7T3naaQJwjuqeLXItd9nTa9T6IEG5vhte5gJNQRAvn1zLi+HbtRMYGgtUeUpgPesRUFTFXSwjlnUdF20qWl0lCg5lFtuAsEfbxFC07bKEAOHnArRBWQv1yGpj+soWF7rbj+JE/1MHduIn+4yWgFhg9ly700LTsHmRkk19zdJsK8LrOwq+6Knm8M9n9Oudq2ZO0+Cwt/4kyWkUWGoKmbsNQdpgBzufmFxJm6TjPM8ASFSxpdpCI434dQ5dj5qdwipSy++V8ZZ5BpdHpadi93qGhTmXjukhcxFHTVf1ArsuDoNCihF1g35CsR4ThBsE/J5uXBa9PVvM6Wc+Vdo=

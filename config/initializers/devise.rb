@@ -1,4 +1,6 @@
 Devise.setup do |config|
+  config.secret_key = ENV['DEVISE_SECRET_KEY']
+
   # The e-mail address that mail will appear to be sent from
   # If absent, mail is sent from "please-change-me-at-config-initializers-devise@example.com"
   config.mailer_sender = "support@freshfoodconnect.org"
