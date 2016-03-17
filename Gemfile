@@ -4,8 +4,6 @@ gem 'rails', '4.2.4'
 
 gem 'rails-api'
 
-gem 'spring', :group => :development
-
 gem 'pg'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'thin'
@@ -13,6 +11,11 @@ gem 'thin'
 # authentication
 gem 'devise_token_auth'
 gem 'omniauth'
+
+group :development do
+  gem 'foreman'
+  gem 'spring'
+end
 
 group :test do
   gem 'factory_girl_rails'

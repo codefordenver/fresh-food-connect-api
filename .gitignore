@@ -31,4 +31,5 @@ log/*
 .ruby-version
 .ruby-gemset
 .vimrc
+.env
 config/initializers/constants.rb
