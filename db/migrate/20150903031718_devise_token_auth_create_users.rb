@@ -41,7 +41,7 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration
       # t.datetime :locked_at
 
       ## Tokens
-      t.json :tokens
+      t.text :tokens
 
       t.timestamps
     end
