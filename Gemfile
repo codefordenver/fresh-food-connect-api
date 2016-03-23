@@ -1,4 +1,6 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
+
+ruby "2.2.2"
 
 gem 'rails', '4.2.4'
 
@@ -21,10 +23,11 @@ group :test do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.0'
   gem "awesome_print"
+  gem "dotenv-rails"
   gem "pry"
   gem "pry-nav"
+  gem "rspec-rails", "~> 3.0"
 end
 
 gem 'mandrill-api'
